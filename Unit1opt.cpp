@@ -3,10 +3,10 @@
 #include <vcl.h>
 #pragma hdrstop
 
-// Neightbours - это соседние клетки
-// Каждая клетка имеет восемь соседей
+// Neightbours - СЌС‚Рѕ СЃРѕСЃРµРґРЅРёРµ РєР»РµС‚РєРё
+// РљР°Р¶РґР°СЏ РєР»РµС‚РєР° РёРјРµРµС‚ РІРѕСЃРµРјСЊ СЃРѕСЃРµРґРµР№
 #define neightbours (((a[i-1][j-1])+(a[i-1][j])+(a[i-1][j+1])+(a[i][j-1])+(a[i][j+1])+(a[i+1][j-1])+(a[i+1][j])+(a[i+1][j+1])))
-int neightbourhood; // Сумма значений всех соседних клеток данной клетки
+int neightbourhood; // РЎСѓРјРјР° Р·РЅР°С‡РµРЅРёР№ РІСЃРµС… СЃРѕСЃРµРґРЅРёС… РєР»РµС‚РѕРє РґР°РЅРЅРѕР№ РєР»РµС‚РєРё
 
 #include "Unit1opt.h"
 #include "About.h"
@@ -16,7 +16,7 @@ int neightbourhood; // Сумма значений всех соседних клеток данной клетки
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
 #pragma resource "*.dfm"
-#define NUM 299   // Размерность поля 
+#define NUM 299   // Р Р°Р·РјРµСЂРЅРѕСЃС‚СЊ РїРѕР»СЏ 
 TForm1 *Form1;
 //---------------------------------------------------------------------------
 __fastcall TForm1::TForm1(TComponent* Owner)
@@ -25,7 +25,7 @@ __fastcall TForm1::TForm1(TComponent* Owner)
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TForm1::CreateArray()   // Создание пустого поля
+void __fastcall TForm1::CreateArray()   // РЎРѕР·РґР°РЅРёРµ РїСѓСЃС‚РѕРіРѕ РїРѕР»СЏ
 {
         for (int i=0; i<(NUM+1); i++)
         for (int j=0; j<(NUM+1); j++)
@@ -33,7 +33,7 @@ void __fastcall TForm1::CreateArray()   // Создание пустого поля
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TForm1::FormCreate(TObject *Sender)  // Начальные значения
+void __fastcall TForm1::FormCreate(TObject *Sender)  // РќР°С‡Р°Р»СЊРЅС‹Рµ Р·РЅР°С‡РµРЅРёСЏ
 {
         magnifier = 2;
         alive = 0;
@@ -49,7 +49,7 @@ void __fastcall TForm1::FormCreate(TObject *Sender)  // Начальные значения
 void __fastcall TForm1::DrawGrid1DrawCell(TObject *Sender, int ACol,
       int ARow, TRect &Rect, TGridDrawState State)
 {
-        // Закрашивание клетки
+        // Р—Р°РєСЂР°С€РёРІР°РЅРёРµ РєР»РµС‚РєРё
 
         if (a[ACol][ARow]!=0)
         DrawGrid1->Canvas->Brush->Color = clGray;
@@ -58,7 +58,7 @@ void __fastcall TForm1::DrawGrid1DrawCell(TObject *Sender, int ACol,
 
         DrawGrid1->Canvas->FillRect(Rect);
 
-        // Не фокусировать последнюю выделенную клетку
+        // РќРµ С„РѕРєСѓСЃРёСЂРѕРІР°С‚СЊ РїРѕСЃР»РµРґРЅСЋСЋ РІС‹РґРµР»РµРЅРЅСѓСЋ РєР»РµС‚РєСѓ
 
         if (State.Contains(gdFocused))
         DrawGrid1->Canvas->DrawFocusRect(Rect);
@@ -78,7 +78,7 @@ void __fastcall TForm1::DrawGrid1SelectCell(TObject *Sender, int ACol, int ARow,
 
 void __fastcall TForm1::LifeOrDeath()
 {
-        // Начинаем процедуру "рождения" новых клеток
+        // РќР°С‡РёРЅР°РµРј РїСЂРѕС†РµРґСѓСЂСѓ "СЂРѕР¶РґРµРЅРёСЏ" РЅРѕРІС‹С… РєР»РµС‚РѕРє
 
         for (i=1; i<NUM; i++)
         for (j=1; j<NUM; j++)
@@ -86,17 +86,17 @@ void __fastcall TForm1::LifeOrDeath()
    	        neightbourhood = neightbours;
    	        if (a[i][j]==0)
                 {
-   	 	        while (neightbourhood >= 9)           // На рождение клеток не должны влиять уже рождённые клетки
+   	 	        while (neightbourhood >= 9)           // РќР° СЂРѕР¶РґРµРЅРёРµ РєР»РµС‚РѕРє РЅРµ РґРѕР»Р¶РЅС‹ РІР»РёСЏС‚СЊ СѓР¶Рµ СЂРѕР¶РґС‘РЅРЅС‹Рµ РєР»РµС‚РєРё
    		        {
                                 neightbourhood = neightbourhood - 9;
    		        }
    		        if ( neightbourhood==3)
-   		        a[i][j] = 9;                         // Максимальная сумма соседних клеток равна восьми,
-   		                                             // тогда рождённые клетки отмечаем девятками
+   		        a[i][j] = 9;                         // РњР°РєСЃРёРјР°Р»СЊРЅР°СЏ СЃСѓРјРјР° СЃРѕСЃРµРґРЅРёС… РєР»РµС‚РѕРє СЂР°РІРЅР° РІРѕСЃСЊРјРё,
+   		                                             // С‚РѕРіРґР° СЂРѕР¶РґС‘РЅРЅС‹Рµ РєР»РµС‚РєРё РѕС‚РјРµС‡Р°РµРј РґРµРІСЏС‚РєР°РјРё
                 }
         }
 
-        // Процедура "умирания" клеток
+        // РџСЂРѕС†РµРґСѓСЂР° "СѓРјРёСЂР°РЅРёСЏ" РєР»РµС‚РѕРє
 
         for (i=1; i<NUM; i++)
         for (j=1; j<NUM; j++)
@@ -113,11 +113,11 @@ void __fastcall TForm1::LifeOrDeath()
 	 		        neightbourhood = neightbourhood - 9;
    	        	}
       	                if (neightbourhood<2 || neightbourhood>3)
-                        a[i][j] = -90;                                // Умирающие клетки отмечаем -90, для облегчения расчётов
+                        a[i][j] = -90;                                // РЈРјРёСЂР°СЋС‰РёРµ РєР»РµС‚РєРё РѕС‚РјРµС‡Р°РµРј -90, РґР»СЏ РѕР±Р»РµРіС‡РµРЅРёСЏ СЂР°СЃС‡С‘С‚РѕРІ
                 }
         }
 
-        // Замена рождённых клеток единицами, умирающих - нулями
+        // Р—Р°РјРµРЅР° СЂРѕР¶РґС‘РЅРЅС‹С… РєР»РµС‚РѕРє РµРґРёРЅРёС†Р°РјРё, СѓРјРёСЂР°СЋС‰РёС… - РЅСѓР»СЏРјРё
 
         for (i=1; i<NUM; i++)
         for (j=1; j<NUM; j++)
@@ -130,12 +130,12 @@ void __fastcall TForm1::LifeOrDeath()
          			break;
                 }
         }
-        gencntr = gencntr + 1;    // Счётчик поколений (ходов)
+        gencntr = gencntr + 1;    // РЎС‡С‘С‚С‡РёРє РїРѕРєРѕР»РµРЅРёР№ (С…РѕРґРѕРІ)
 
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TForm1::CountFishki()     // Считает количество живых фишек
+void __fastcall TForm1::CountFishki()     // РЎС‡РёС‚Р°РµС‚ РєРѕР»РёС‡РµСЃС‚РІРѕ Р¶РёРІС‹С… С„РёС€РµРє
 {
         alive = 0;
         for (i=0; i<(NUM+1); i++)
@@ -150,7 +150,7 @@ void __fastcall TForm1::CountFishki()     // Считает количество живых фишек
 
 void __fastcall TForm1::DoAnimation()
 {
-        // Генерируем задержку (если анимация включена)
+        // Р“РµРЅРµСЂРёСЂСѓРµРј Р·Р°РґРµСЂР¶РєСѓ (РµСЃР»Рё Р°РЅРёРјР°С†РёСЏ РІРєР»СЋС‡РµРЅР°)
 
         if (Form1->CheckBox1->Checked == 1)
         switch (OKBottomDlg->TrackBar2->Position)
@@ -167,7 +167,7 @@ void __fastcall TForm1::DoAnimation()
 //---------------------------------------------------------------------------
 
 
-void __fastcall TForm1::BitBtn1Click(TObject *Sender)  // Кнопка "Старт"
+void __fastcall TForm1::BitBtn1Click(TObject *Sender)  // РљРЅРѕРїРєР° "РЎС‚Р°СЂС‚"
 {
         for (long i = 0; i<stepcount; i++)
         {
@@ -184,9 +184,9 @@ void __fastcall TForm1::BitBtn1Click(TObject *Sender)  // Кнопка "Старт"
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TForm1::ResizeCell()   // Изменение размера ячеек
+void __fastcall TForm1::ResizeCell()   // РР·РјРµРЅРµРЅРёРµ СЂР°Р·РјРµСЂР° СЏС‡РµРµРє
 {
-        int m; //размер клетки
+        int m; //СЂР°Р·РјРµСЂ РєР»РµС‚РєРё
         switch (magnifier)
         {
                 case 0: m = 1; break;
@@ -206,7 +206,7 @@ void __fastcall TForm1::ResizeCell()   // Изменение размера ячеек
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TForm1::BitBtn2Click(TObject *Sender)   // Кнопка "Очистить"
+void __fastcall TForm1::BitBtn2Click(TObject *Sender)   // РљРЅРѕРїРєР° "РћС‡РёСЃС‚РёС‚СЊ"
 {
         CreateArray();
         gencntr = 0;
@@ -219,7 +219,7 @@ void __fastcall TForm1::BitBtn2Click(TObject *Sender)   // Кнопка "Очистить"
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TForm1::TrackBar1Change(TObject *Sender)  // Изменение масштаба
+void __fastcall TForm1::TrackBar1Change(TObject *Sender)  // РР·РјРµРЅРµРЅРёРµ РјР°СЃС€С‚Р°Р±Р°
 {
         switch (TrackBar1->Position)
         {
@@ -234,31 +234,31 @@ void __fastcall TForm1::TrackBar1Change(TObject *Sender)  // Изменение масштаба
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TForm1::N4Click(TObject *Sender)   // Очистка поля
+void __fastcall TForm1::N4Click(TObject *Sender)   // РћС‡РёСЃС‚РєР° РїРѕР»СЏ
 {
         BitBtn2->Click();
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TForm1::N2Click(TObject *Sender)   // Закрывает программу
+void __fastcall TForm1::N2Click(TObject *Sender)   // Р—Р°РєСЂС‹РІР°РµС‚ РїСЂРѕРіСЂР°РјРјСѓ
 {
         Form1->Close();
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TForm1::N5Click(TObject *Sender)   // Вывод сведений о программе
+void __fastcall TForm1::N5Click(TObject *Sender)   // Р’С‹РІРѕРґ СЃРІРµРґРµРЅРёР№ Рѕ РїСЂРѕРіСЂР°РјРјРµ
 {
         AboutBox->ShowModal();
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TForm1::N6Click(TObject *Sender)  // Правила игры
+void __fastcall TForm1::N6Click(TObject *Sender)  // РџСЂР°РІРёР»Р° РёРіСЂС‹
 {
         Form2->Show();
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TForm1::N7Click(TObject *Sender)  // Настройки анимации
+void __fastcall TForm1::N7Click(TObject *Sender)  // РќР°СЃС‚СЂРѕР№РєРё Р°РЅРёРјР°С†РёРё
 {
         OKBottomDlg->Show();
 }

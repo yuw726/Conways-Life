@@ -17,24 +17,24 @@
 class TForm1 : public TForm
 {
 __published:	// IDE-managed Components
-        TDrawGrid *DrawGrid1;    // Сетка игрового поля
+        TDrawGrid *DrawGrid1;    // РЎРµС‚РєР° РёРіСЂРѕРІРѕРіРѕ РїРѕР»СЏ
         TBevel *Bevel1;
-        TBitBtn *BitBtn1;        // Кнопка "Старт"
-        TBitBtn *BitBtn2;        // Кнопка "Очистить"
+        TBitBtn *BitBtn1;        // РљРЅРѕРїРєР° "РЎС‚Р°СЂС‚"
+        TBitBtn *BitBtn2;        // РљРЅРѕРїРєР° "РћС‡РёСЃС‚РёС‚СЊ"
         TGroupBox *GroupBox1;
         TLabel *Label1;
         TLabel *Label2;
         TLabel *Label3;
         TLabel *Label4;
         TLabel *Label5;
-        TMainMenu *MainMenu1;    // Главное меню
-        TMenuItem *N1;           // "Файл"
-        TMenuItem *N2;           // "Файл->Закрыть"
-        TMenuItem *N3;           // "Справка"
-        TMenuItem *N4;           // "Файл->Новая игра"
-        TMenuItem *N5;           // "Справка->О программе"
-        TMenuItem *N6;           // "Справка->Правила игры"
-        TMenuItem *N7;           // "Файл->Наcтройки"
+        TMainMenu *MainMenu1;    // Р“Р»Р°РІРЅРѕРµ РјРµРЅСЋ
+        TMenuItem *N1;           // "Р¤Р°Р№Р»"
+        TMenuItem *N2;           // "Р¤Р°Р№Р»->Р—Р°РєСЂС‹С‚СЊ"
+        TMenuItem *N3;           // "РЎРїСЂР°РІРєР°"
+        TMenuItem *N4;           // "Р¤Р°Р№Р»->РќРѕРІР°СЏ РёРіСЂР°"
+        TMenuItem *N5;           // "РЎРїСЂР°РІРєР°->Рћ РїСЂРѕРіСЂР°РјРјРµ"
+        TMenuItem *N6;           // "РЎРїСЂР°РІРєР°->РџСЂР°РІРёР»Р° РёРіСЂС‹"
+        TMenuItem *N7;           // "Р¤Р°Р№Р»->РќР°cС‚СЂРѕР№РєРё"
         TGroupBox *GroupBox2;
         TTrackBar *TrackBar1;
         TCheckBox *CheckBox1;
@@ -55,17 +55,17 @@ __published:	// IDE-managed Components
         void __fastcall N7Click(TObject *Sender);
         void __fastcall N8Click(TObject *Sender);
 private:	// User declarations
-        unsigned int i,j;  // Переменные циклов
-        unsigned int gencntr;  // Generation counter - счётчик поколений
-        int a[300][300];  // Игровое поле
-        unsigned int alive; // Живые фишки
-        unsigned short magnifier;    // Коэффициент увеличения масштаба
-        unsigned long stepcount;   // Счётчик ходов при анимации
+        unsigned int i,j;  // РџРµСЂРµРјРµРЅРЅС‹Рµ С†РёРєР»РѕРІ
+        unsigned int gencntr;  // Generation counter - СЃС‡С‘С‚С‡РёРє РїРѕРєРѕР»РµРЅРёР№
+        int a[300][300];  // РРіСЂРѕРІРѕРµ РїРѕР»Рµ
+        unsigned int alive; // Р–РёРІС‹Рµ С„РёС€РєРё
+        unsigned short magnifier;    // РљРѕСЌС„С„РёС†РёРµРЅС‚ СѓРІРµР»РёС‡РµРЅРёСЏ РјР°СЃС€С‚Р°Р±Р°
+        unsigned long stepcount;   // РЎС‡С‘С‚С‡РёРє С…РѕРґРѕРІ РїСЂРё Р°РЅРёРјР°С†РёРё
 
-        void __fastcall CreateArray();  // Создание пустого поля
-        void __fastcall LifeOrDeath();  // Основная функция
-        void __fastcall ResizeCell();   // Изменение размера ячеек
-        void __fastcall CountFishki();  // Считает количество живых фишек
+        void __fastcall CreateArray();  // РЎРѕР·РґР°РЅРёРµ РїСѓСЃС‚РѕРіРѕ РїРѕР»СЏ
+        void __fastcall LifeOrDeath();  // РћСЃРЅРѕРІРЅР°СЏ С„СѓРЅРєС†РёСЏ
+        void __fastcall ResizeCell();   // РР·РјРµРЅРµРЅРёРµ СЂР°Р·РјРµСЂР° СЏС‡РµРµРє
+        void __fastcall CountFishki();  // РЎС‡РёС‚Р°РµС‚ РєРѕР»РёС‡РµСЃС‚РІРѕ Р¶РёРІС‹С… С„РёС€РµРє
         void __fastcall DoAnimation();
 public:		// User declarations
         __fastcall TForm1(TComponent* Owner);
